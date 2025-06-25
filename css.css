@@ -67,27 +67,29 @@ main {
   gap: 30px;
 }
 
+/* Entrada de produto */
 .product-entry {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 4px 10px; /* Menor espaço vertical, espaço horizontal confortável */
+  align-items: start; /* Inputs colados no label */
 }
 
 .product-entry label {
   font-weight: 600;
   color: var(--rosa-escuro);
-  margin-bottom: 2px;
+  margin-bottom: 0; /* Remove espaçamento extra */
 }
 
 .product-entry input {
-  width: 100%;
-  padding: 8px 12px;
+  padding: 8px 24px;
   border: 2px solid var(--cinza-claro);
   border-radius: 12px;
   font-size: 1rem;
   color: var(--rosa-escuro);
   background: var(--rosa-claro);
   transition: border-color 0.3s;
+  margin-bottom: 0; /* Remove margem abaixo */
 }
 
 .product-entry input:focus {
@@ -96,13 +98,14 @@ main {
 }
 
 #addBtn {
-  padding: 10px 0;
+  grid-column: span 1;
+  padding: 6px 10px; /* Botão menor */
   background-color: var(--rosa-medio);
   color: var(--branco);
   border: none;
-  border-radius: 20px;
+  border-radius: 12px;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   cursor: pointer;
   box-shadow: 0 4px 8px var(--rosa-sombra);
   transition: background-color 0.3s ease;

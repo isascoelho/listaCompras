@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mercadinho Rosa da Isa 💖</title>
+  <link rel="stylesheet" href="css.css" />
+</head>
+<body>
+  <header>
+    <h1>💗 Mercadinho da Isa 💗</h1>
+    <div id="cart-counter" aria-live="polite" aria-atomic="true" tabindex="0">
+      Carrinho: <span id="cart-count">0</span> itens
+    </div>
+  </header>
+
+  <main>
+    <section class="product-entry">
+      <label for="itemInput">Produto</label>
+      <input type="text" id="itemInput" placeholder="Nome do produto" autocomplete="off" />
+
+      <label for="quantityInput">Quantidade</label>
+      <input type="number" id="quantityInput" min="1" value="1" />
+
+      <label for="priceInput">Preço (R$)</label>
+      <input type="number" id="priceInput" min="0" step="0.01" placeholder="0.00" />
+
+      <button id="addBtn" aria-label="Adicionar produto">Adicionar Produto</button>
+    </section>
+
+    <section class="lists-container">
+      <article class="product-list">
+        <h2>Produtos Disponíveis</h2>
+        <input type="search" id="searchInput" placeholder="Buscar produto..." aria-label="Buscar produto"/>
+        <ul id="itemList" aria-live="polite" aria-relevant="additions removals" tabindex="0"></ul>
+        <button id="clearProducts" class="clear-btn" aria-label="Limpar lista de produtos">Limpar Produtos</button>
+      </article>
+
+      <article class="cart-list">
+        <h2>Carrinho</h2>
+        <input type="search" id="searchInput" placeholder="Buscar produto..." aria-label="Buscar produto"/>
+        <ul id="cartList" aria-live="polite" aria-relevant="additions removals" tabindex="0"></ul>
+        <p class="total">Total: R$ <span id="totalCarrinho">0.00</span></p>
+        <button id="clearCart" class="clear-btn" aria-label="Limpar carrinho">Limpar Carrinho</button>
+      </article>
+    </section>
+  </main>
+
+  <div id="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+  <script src="js.js"></script>
+</body>
+</html>

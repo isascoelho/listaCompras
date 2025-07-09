@@ -56,8 +56,14 @@ function renderProdutos() {
       btnAdd.textContent = 'Adicionar ao carrinho';
       btnAdd.classList.add('adicionar');
       btnAdd.addEventListener('click', () => {
+        // Incrementa contador de cliques
+        if (!produto.clicks) produto.clicks = 0;
+        produto.clicks++;
+
         adicionarAoCarrinho(produto);
-        showToast(`Adicionado "${produto.nome}" ao carrinho!`);
+        salvarLocal(); // Salva o contador atualizado
+
+        showToast(`Adicionado "${produto.nome}" ao carrinho! (adicionado ${produto.clicks}x)`);
       });
 
       const btnRemover = document.createElement('button');
@@ -133,7 +139,7 @@ function adicionarItem() {
     return;
   }
 
-  produtos.push({ nome, qtd, preco });
+  produtos.push({ nome, qtd, preco, clicks: 0 });
 
   itemInput.value = '';
   quantityInput.value = '1';

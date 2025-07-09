@@ -1,66 +1,26 @@
-//localstorage3
-//usuário digita o nome do produto a ser adicionado.
+// Elementos do DOM
 const itemInput = document.getElementById('itemInput');
-
-//localstorage4
-//informa a quantidade de produtos a serem adicionados.
 const quantityInput = document.getElementById('quantityInput');
-
-//localstorage5
-//informa o preço do produto a ser adicionado.
 const priceInput = document.getElementById('priceInput');
-
-//localstorage6
-//botão para adicionar o produto à lista de compras.
 const addBtn = document.getElementById('addBtn');
-
-//localstorage7
-//lista de produtos a serem comprados.
 const itemList = document.getElementById('itemList');
-
-//localstorage8
-//lista de produtos que foram adicionados ao carrinho.
 const cartList = document.getElementById('cartList');
-
-//localstorage9
-//total do carrinho de compras.
 const totalCarrinho = document.getElementById('totalCarrinho');
-
-//localstorage10
-//campo de busca para filtrar produtos.
 const searchInput = document.getElementById('searchInput');
-
-//localstorage11
-//botão para limpar a lista de produtos.
 const clearProductsBtn = document.getElementById('clearProducts');
-
-//localstorage12
-//botão para limpar o carrinho de compras.
 const clearCartBtn = document.getElementById('clearCart');
-
-//localstorage13
-//toast para mostrar mensagens de feedback.
 const toast = document.getElementById('toast');
-
-//localstorage14
-//contador de itens no carrinho, exibido no header.
 const cartCounter = document.getElementById('cart-count');
+const toggleMenuBtn = document.getElementById('toggleMenu');
+const themeOptions = document.getElementById('theme-options');
 
-//localstorage15
-//carrega os produtos e o carrinho do localStorage ou inicializa como arrays vazios
+// Dados carregados do localStorage
 let produtos = JSON.parse(localStorage.getItem('produtos')) || [];
-
-//localstorage16
-//carrega o carrinho do localStorage ou inicializa como array vazio
 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
 // Salva no localStorage
 function salvarLocal() {
-  //localstorage1
-  // salva os produtos no localstorage
   localStorage.setItem('produtos', JSON.stringify(produtos));
-  //localstorage2
-  // salva o carrinho no localstorage
   localStorage.setItem('carrinho', JSON.stringify(carrinho));
 }
 
@@ -77,7 +37,7 @@ function atualizarContador() {
   cartCounter.textContent = totalItens;
 }
 
-// Renderiza produtos, com filtro de busca
+// Renderiza produtos com filtro de busca
 function renderProdutos() {
   const filtro = searchInput.value.trim().toLowerCase();
   itemList.innerHTML = '';
@@ -100,16 +60,12 @@ function renderProdutos() {
       btnAdd.textContent = 'Adicionar ao carrinho';
       btnAdd.classList.add('adicionar');
 
-      //eventlistener1
-      //quando o botão for acionado adiciona o produto ao carrinho
       btnAdd.addEventListener('click', () => {
-        // Incrementa contador de cliques
         if (!produto.clicks) produto.clicks = 0;
         produto.clicks++;
 
         adicionarAoCarrinho(produto);
-        salvarLocal(); // Salva o contador atualizado
-
+        salvarLocal();
         showToast(`Adicionado "${produto.nome}" ao carrinho! (adicionado ${produto.clicks}x)`);
       });
 
@@ -118,8 +74,6 @@ function renderProdutos() {
       btnRemover.title = 'Remover produto';
       btnRemover.classList.add('remover');
 
-      //eventlistener2
-      //quando o botão for acionado remove o produto da lista
       btnRemover.addEventListener('click', () => {
         if (confirm(`Remover "${produto.nome}" da lista?`)) {
           produtos.splice(index, 1);
@@ -157,8 +111,7 @@ function renderCarrinho() {
     btnRemover.textContent = '🗑️';
     btnRemover.title = 'Remover do carrinho';
     btnRemover.classList.add('remover');
-    //eventlistener3
-      //quando o botão for acionado remove o produto do carrinho
+
     btnRemover.addEventListener('click', () => {
       if (confirm(`Remover "${item.nome}" do carrinho?`)) {
         carrinho.splice(index, 1);
@@ -214,12 +167,11 @@ function adicionarAoCarrinho(produto) {
   renderCarrinho();
   atualizarContador();
 }
-//eventlistener4
-// Busca na lista de produtos
+
+// Eventos e listeners
+
 searchInput.addEventListener('input', renderProdutos);
 
-//eventlistener5
-// Botões limpar
 clearProductsBtn.addEventListener('click', () => {
   if (produtos.length === 0) {
     alert('A lista de produtos já está vazia!');
@@ -233,8 +185,6 @@ clearProductsBtn.addEventListener('click', () => {
   }
 });
 
-//eventlistener6
-//botão limpar carrinho
 clearCartBtn.addEventListener('click', () => {
   if (carrinho.length === 0) {
     alert('O carrinho já está vazio!');
@@ -249,7 +199,6 @@ clearCartBtn.addEventListener('click', () => {
   }
 });
 
-// Eventos para adicionar com Enter
 [itemInput, quantityInput, priceInput].forEach(input => {
   input.addEventListener('keypress', e => {
     if (e.key === 'Enter') {
@@ -258,8 +207,36 @@ clearCartBtn.addEventListener('click', () => {
   });
 });
 
-//eventlistener7
-//botão adicionar
+// 🌙 Modo escuro
+const toggleDarkMode = document.getElementById("toggleDarkMode");
+
+toggleMenuBtn.addEventListener("click", () => {
+  themeOptions.classList.toggle("show");
+});
+
+toggleDarkMode.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+
+  // Salva no localStorage a preferência
+  if (document.body.classList.contains("dark-mode")) {
+    localStorage.setItem("tema", "escuro");
+    toggleDarkMode.textContent = "☀️ Modo Claro";
+  } else {
+    localStorage.setItem("tema", "claro");
+    toggleDarkMode.textContent = "🌙 Modo Escuro";
+  }
+});
+
+// Mantém o tema salvo ao recarregar a página
+window.addEventListener("DOMContentLoaded", () => {
+  const temaSalvo = localStorage.getItem("tema");
+  if (temaSalvo === "escuro") {
+    document.body.classList.add("dark-mode");
+    toggleDarkMode.textContent = "☀️ Modo Claro";
+  }
+});
+
+// Botão adicionar produto
 addBtn.addEventListener('click', adicionarItem);
 
 // Inicialização

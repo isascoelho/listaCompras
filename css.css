@@ -71,14 +71,14 @@ main {
 .product-entry {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 4px 10px; /* Menor espaço vertical, espaço horizontal confortável */
-  align-items: start; /* Inputs colados no label */
+  gap: 4px 10px;
+  align-items: start;
 }
 
 .product-entry label {
   font-weight: 600;
   color: var(--rosa-escuro);
-  margin-bottom: 0; /* Remove espaçamento extra */
+  margin-bottom: 0;
 }
 
 .product-entry input {
@@ -89,7 +89,7 @@ main {
   color: var(--rosa-escuro);
   background: var(--rosa-claro);
   transition: border-color 0.3s;
-  margin-bottom: 0; /* Remove margem abaixo */
+  margin-bottom: 0;
 }
 
 .product-entry input:focus {
@@ -99,7 +99,7 @@ main {
 
 #addBtn {
   grid-column: span 1;
-  padding: 6px 10px; /* Botão menor */
+  padding: 6px 10px;
   background-color: var(--rosa-medio);
   color: var(--branco);
   border: none;
@@ -307,4 +307,134 @@ li:hover {
   #addBtn {
     width: 100%;
   }
+}
+/* 🌙 Menu de acessibilidade */
+#accessibility-menu {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+#toggleMenu {
+  background-color: var(--rosa-escuro);
+  border: 2px solid var(--branco);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 22px;
+  color: var(--branco);
+  cursor: pointer;
+}
+
+#theme-options {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+#theme-options.show {
+  display: flex;
+}
+
+#theme-options button {
+  background-color: var(--rosa-escuro);
+  border: 1px solid var(--branco);
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--branco);
+  transition: background-color 0.2s ease;
+}
+
+#theme-options button:hover {
+  background-color: var(--rosa-hover);
+}
+/* 🌙 MODO ESCURO VISÍVEL E FUNCIONAL */
+.dark-mode {
+  background-color: #1a001a;
+  color: #ffe6f0;
+}
+
+.dark-mode body,
+.dark-mode header,
+.dark-mode main,
+.dark-mode .product-list,
+.dark-mode .cart-list {
+  background-color: #2a002a;
+  color: #ffe6f0;
+}
+
+.dark-mode header h1,
+.dark-mode h2,
+.dark-mode label,
+.dark-mode .total,
+.dark-mode small,
+.dark-mode #cart-counter {
+  color: #ffe6f0;
+}
+
+.dark-mode input,
+.dark-mode select,
+.dark-mode textarea {
+  background-color: #3b003b;
+  color: #ffe6f0;
+  border: 2px solid #880e4f;
+}
+
+.dark-mode input::placeholder {
+  color: #ffc1e3;
+  opacity: 0.7;
+}
+
+.dark-mode button {
+  background-color: #880e4f;
+  color: #ffe6f0;
+  border: none;
+}
+
+.dark-mode button:hover,
+.dark-mode .adicionar:hover,
+.dark-mode .clear-btn:hover {
+  background-color: #aa1e6a;
+}
+
+.dark-mode .adicionar,
+.dark-mode .clear-btn,
+.dark-mode #addBtn {
+  background-color: #ad1457;
+  color: #fff;
+}
+
+.dark-mode li {
+  background-color: #4d004d;
+  color: #ffe6f0;
+  border: 1px solid #ffb6d1;
+}
+
+.dark-mode .remover {
+  color: #ffc1e3;
+}
+
+.dark-mode #toast {
+  background-color: #880e4f;
+  color: #ffe6f0;
+}
+
+.dark-mode #theme-options button,
+.dark-mode #toggleMenu {
+  background-color: #880e4f;
+  color: #ffe6f0;
+  border-color: #ffe6f0;
+}
+
+.dark-mode .botoes-produto button {
+  background-color: #a0154c;
+  color: #ffe6f0;
 }

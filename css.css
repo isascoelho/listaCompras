@@ -438,3 +438,22 @@ li:hover {
   background-color: #a0154c;
   color: #ffe6f0;
 }
+
+#addBtn2 {
+  grid-column: span 1;
+  padding: 6px 10px;
+  background-color: var(--rosa-medio);
+  color: var(--branco);
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 4px 8px var(--rosa-sombra);
+  transition: background-color 0.3s ease;
+}
+
+.lilas-mode {
+  background-color: #e99fff;
+  color: #ffe6f0;
+}

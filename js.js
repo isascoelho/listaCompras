@@ -209,10 +209,13 @@ clearCartBtn.addEventListener('click', () => {
 
 // 🌙 Modo escuro
 const toggleDarkMode = document.getElementById("toggleDarkMode");
+const togglelilasMode = document.getElementById("addBtn2");
 
 toggleMenuBtn.addEventListener("click", () => {
   themeOptions.classList.toggle("show");
 });
+
+
 
 toggleDarkMode.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
@@ -237,9 +240,31 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // Botão adicionar produto
-addBtn.addEventListener('click', adicionarItem);
+addBtn.addEventListener('click', adicionarItem)
+;
+
+togglelilasMode.addEventListener("click", () => {
+  document.body.classList.toggle("lilas-mode");
+
+  // Salva no localStorage a preferência
+  if (document.body.classList.contains("lilas-mode")) {
+    localStorage.setItem("tema", "lilas");
+  } else {
+    if (document.body.classList.contains("dark-mode")) {
+      localStorage.setItem("tema", "escuro");
+      toggleDarkMode.textContent = "☀️ Modo Claro";
+    } else {
+      localStorage.setItem("tema", "claro");
+      toggleDarkMode.textContent = "🌙 Modo Escuro";
+    }
+  }
+});
+
+
 
 // Inicialização
 renderProdutos();
 renderCarrinho();
 atualizarContador();
+
+
